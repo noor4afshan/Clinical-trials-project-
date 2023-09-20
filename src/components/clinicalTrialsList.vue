@@ -54,7 +54,7 @@
 
                     <div class="btn-group" role="group">
                         <button v-for="page in visiblePages" :key="page" @click="onPage(page)"
-                            :class="['btn', 'btn-sm', { 'bg-secondary-subtle me-1': currentPage !== page, 'btn-success': currentPage === page }]">
+                            :class="['btn', 'btn-sm', { 'bg-secondary-subtle me-1': currentPage !== page, 'btn-danger': currentPage === page }]">
                             {{ page }}
                         </button>
                     </div>
@@ -92,6 +92,9 @@ export default {
                     this.fetchedData = resp.data.StudyFieldsResponse.StudyFields
                     console.log(this.fetchedData)
                 })
+                .catch((error) => {
+                    console.error("An error occurred when fetching data", error)
+                })
         },
         pageBack() {                                // For Pagination
             if (this.currentPage > 1) {
@@ -107,14 +110,7 @@ export default {
             this.currentPage = page
         },
         filterData() {                                          // For Search                       
-            // const query = this.searchQuery.toLowerCase();
-            // const NCTId = this.fetchedData.filter(data =>
-            //     data.NCTId[0].toLowerCase().includes(query));
-
-            // const BriefTitle = this.fetchedData.filter(data =>
-            //     data.BriefTitle[0].toLowerCase().includes(query));
-
-            //  return [...NCTId, ...BriefTitle]
+            
             const query = this.searchQuery.toLowerCase();
 
             // Filter data based on both search query and selected phase
