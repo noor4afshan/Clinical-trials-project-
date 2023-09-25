@@ -8,7 +8,7 @@ components:{
 <template>
   <nav class="navbar navbar-expand-lg bg-danger text-white fixed-top">
     <div class="container-fluid">
-      <h3>Clinical Trials </h3>
+      <h3>Clinical Trials List</h3>
     </div>
   </nav>
   <header>
