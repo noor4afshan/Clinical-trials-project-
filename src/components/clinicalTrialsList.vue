@@ -146,7 +146,7 @@ export default {
         paginatedData() {                                   // For Pagination
             const startIndex = (this.currentPage - 1) * this.pageSize;
             const endIndex = startIndex + this.pageSize;
-            return this.filteredData.slice(startIndex, endIndex);  //changed here filteredData in the place of fetchedData to both features
+            return this.filteredData.slice(startIndex, endIndex);                                               //changed here filteredData in the place of fetchedData to both features
         },
         filteredData() {                                    // For Search  
             return this.filterData();
