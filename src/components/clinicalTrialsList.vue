@@ -2,46 +2,51 @@
     <div class="col-lg-12 d-flex justify-content-end p-2">
         <input type="text" v-model="searchQuery" placeholder="Search by NCTId " />
     </div>
-    <table class="table table-bordered">
-        <thead class="table-secondary text-center">
-            <tr>
-                <th>Rank</th>
-                <th>NCTID</th>
-                <th>Condition</th>
-                <th>BriefTitle</th>
-                <th>
-                    <!-- filter for phase -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="phaseFilterDropdown"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ selectedPhase || "All Phases" }}
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="phaseFilterDropdown">
-                            <a class="dropdown-item" href="#" @click="selectPhase('')"> All Phases </a>
-                            <a class="dropdown-item" href="#" @click="selectPhase('Phase 1')">Phase 1 </a>
-                            <a class="dropdown-item" href="#" @click="selectPhase('Phase 2')">Phase 2 </a>
-                            <a class="dropdown-item" href="#" @click="selectPhase('Phase 3')">Phase 3</a>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-bordered">
+                    <thead class="table-secondary text-center">
+                        <tr>
+                            <th>Rank</th>
+                            <th>NCTID</th>
+                            <th>Condition</th>
+                            <th>BriefTitle</th>
+                            <th>
+                                <!-- filter for phase -->
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="phaseFilterDropdown"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ selectedPhase || "All Phases" }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="phaseFilterDropdown">
+                                        <a class="dropdown-item" href="#" @click="selectPhase('')"> All Phases </a>
+                                        <a class="dropdown-item" href="#" @click="selectPhase('Phase 1')">Phase 1 </a>
+                                        <a class="dropdown-item" href="#" @click="selectPhase('Phase 2')">Phase 2 </a>
+                                        <a class="dropdown-item" href="#" @click="selectPhase('Phase 3')">Phase 3</a>
+                                    </div>
 
-                    </div>
-                </th>
-                <th>OverallStatus</th>
-                <th>LocationContactEMail</th>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            <tr v-for="(data) in paginatedData" :key="data.Rank">
-                <td>{{ data.Rank }}</td>
-                <td>{{ data.NCTId[0] }}</td>
-                <td>{{ data.Condition[0] }}</td>
-                <td>{{ data.BriefTitle[0] }}</td>
-                <td>{{ data.Phase[0] }}</td>
-                <td>{{ data.OverallStatus[0] }}</td>
-                <td>{{ data.LocationContactEMail[0] }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+                                </div>
+                            </th>
+                            <th>OverallStatus</th>
+                            <th>LocationContactEMail</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr v-for="(data) in paginatedData" :key="data.Rank">
+                            <td>{{ data.Rank }}</td>
+                            <td>{{ data.NCTId[0] }}</td>
+                            <td>{{ data.Condition[0] }}</td>
+                            <td>{{ data.BriefTitle[0] }}</td>
+                            <td>{{ data.Phase[0] }}</td>
+                            <td>{{ data.OverallStatus[0] }}</td>
+                            <td>{{ data.LocationContactEMail[0] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <!-- Paggination -->
 
     <div class="container-fluid">
@@ -110,7 +115,7 @@ export default {
             this.currentPage = page
         },
         filterData() {                                          // For Search                       
-            
+
             const query = this.searchQuery.toLowerCase();
 
             // Filter data based on both search query and selected phase
