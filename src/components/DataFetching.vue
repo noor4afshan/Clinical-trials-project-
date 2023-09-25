@@ -1,4 +1,4 @@
-<!-- This component is only created for sample and it's code is not including anywhere -->
+<!-- This component is only created for sample and its code is not including anywhere -->
 <template>
 
 </template>
