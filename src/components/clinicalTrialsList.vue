@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-end p-2">
+    <div class="col-lg-12 d-flex justify-content-end p-2">
         <input type="text" v-model="searchQuery" placeholder="Search by NCTId " />
     </div>
     <table class="table table-bordered">
