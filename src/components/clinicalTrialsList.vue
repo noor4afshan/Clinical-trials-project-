@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid d-flex justify-content-end pt-2 pb-2">
-        <input type="text" v-model="searchQuery" placeholder="Search by NCTId " />
+        <input type="text" v-model="searchQuery" placeholder="Search by All " />
     </div>
     <div class="container-fluid">
         <table class="table table-bordered">
