@@ -21,7 +21,8 @@
                                 <a class="dropdown-item" href="#" @click="selectPhase('')"> All Phases </a>
                                 <a class="dropdown-item" href="#" @click="selectPhase('Phase 1')">Phase 1 </a>
                                 <a class="dropdown-item" href="#" @click="selectPhase('Phase 2')">Phase 2 </a>
-                                <a class="dropdown-item" href="#" @click="selectPhase('Phase 3')">Phase 3</a>
+                                <a class="dropdown-item" href="#" @click="selectPhase('Phase 3')">Phase 3</a><hr>
+                                <a class="dropdown-item" href="#" @click="selectPhase('Not Applicable')">Not Applicable </a>
                             </div>
                         </div>
                     </th>
@@ -117,9 +118,10 @@ export default {
             // Filter data based on both search query and selected phase
             const filteredData = this.fetchedData.filter(data => {
                 const phaseMatches = this.selectedPhase === '' || data.Phase[0] === this.selectedPhase;
-                const queryMatches = data.NCTId[0].toLowerCase().includes(query) || data.BriefTitle[0].toLowerCase().includes(query);
+                const queryMatches = data.NCTId[0].toLowerCase().includes(query) || data.BriefTitle[0].toLowerCase().includes(query) || data.Condition[0].toLowerCase().includes(query) || data.OverallStatus[0].toLowerCase().includes(query);
                 return phaseMatches && queryMatches;
             });
+            
 
             return filteredData;
         },
@@ -133,16 +135,23 @@ export default {
             return Math.ceil(this.fetchedData.length / this.pageSize);
         },
         visiblePages() {                                        // For Pagination
-            const half = (this.displayPages / 2);
-            const start = Math.max(this.currentPage - half, 1);
-            const end = Math.min(start + this.displayPages - 1, this.totalPages);
-            const count = this.displayPages - (end - start + 1);
-
+            
             const visiblePages = [];
-            for (let i = start; i <= end; i++) {
-                visiblePages.push(i);
+            if (this.filteredData.length < 10) {                // Only show the current page when there's filtered data
+                visiblePages.push(this.currentPage);
+            } else {                                            // Show the regular pagination when no filtering
+                const half = (this.displayPages / 2);
+                const start = Math.max(this.currentPage - half, 1);
+                const end = Math.min(start + this.displayPages - 1, this.totalPages);
+
+                for (let i = start; i <= end; i++) {
+                    visiblePages.push(i);
+                }
             }
             return visiblePages;
+        
+            
+           
         },
         paginatedData() {                                   // For Pagination
             const startIndex = (this.currentPage - 1) * this.pageSize;

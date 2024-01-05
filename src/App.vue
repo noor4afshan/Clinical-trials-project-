@@ -12,8 +12,7 @@ components:{
     </div>
   </nav>
   <header>
-<h1>noor</h1>
-    
+    <h1>Noor</h1>    
   </header>
 
  <List/>

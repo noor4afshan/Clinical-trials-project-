@@ -27,3 +27,18 @@ export default {
 }
 
 </script>
+
+<!-- Extra code -->
+
+<!-- // const visiblePages = [];
+// if (this.filteredData.length < 10) {
+//     visiblePages.push(this.currentPage);
+// } else {
+//     const half = (this.displayPages / 2);
+//     const start = Math.max(this.currentPage - half, 1);
+//     const end = Math.min(start + this.displayPages - 1, this.totalPages);
+//     // const count = this.displayPages - (end - start + 1);
+//     for (let i = start; i <= end; i++) {
+//         visiblePages.push(i);
+//     }
+//     return visiblePages; -->
