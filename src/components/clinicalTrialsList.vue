@@ -33,7 +33,7 @@
             </thead>
             <tbody class="text-center">
                 <tr v-for="(data, index) in paginatedData" :key="data.Rank">
-                    <td>{{ index + 1 }}</td>
+                    <td>{{ (currentPage - 1) * pageSize + index + 1 }}</td>
                     <td>{{ data.NCTId[0] }}</td>
                     <td>{{ data.Condition[0] }}</td>
                     <td>{{ data.BriefTitle[0] }}</td>
@@ -113,19 +113,22 @@ export default {
             this.currentPage = page
         },
         filterData() {                                          // For Search                       
-           
+
             const query = this.searchQuery.toLowerCase();
 
             const filteredData = this.fetchedData.filter(data => {
-                
+
                 const phaseMatches = this.selectedPhase === '' || data.Phase[0] === this.selectedPhase;
+
                 const ContactEmails = data.LocationContactEMail.filter(email => email !== undefined).map(email => email.toLowerCase())
-                
-                    const queryMatches = data.NCTId[0].toLowerCase().includes(query) ||
+                const filterPhase = data.Phase.filter(getPhase => getPhase !== undefined).map(getPhase => getPhase.toLowerCase())
+
+                const queryMatches = data.NCTId[0].toLowerCase().includes(query) ||
                     data.BriefTitle[0].toLowerCase().includes(query) ||
                     ContactEmails.includes(query) ||
                     data.Condition[0].toLowerCase().includes(query) ||
-                    data.OverallStatus[0].toLowerCase().includes(query);
+                    data.OverallStatus[0].toLowerCase().includes(query) ||
+                    filterPhase.includes(query);
 
                 return phaseMatches && queryMatches;
             });
