@@ -114,25 +114,45 @@ export default {
         },
         filterData() {                                          // For Search                       
 
+            // const query = this.searchQuery.toLowerCase();
+
+            // const filteredData = this.fetchedData.filter(data => {
+            //     console.log(data.Phase)
+            //     const phaseMatches = this.selectedPhase === '' || data.Phase[0] === this.selectedPhase;
+
+            //     const ContactEmails = data.LocationContactEMail.filter(email => email !== undefined).map(email => email.toLowerCase())
+            //     const filterPhase = data.Phase.filter(getPhase => getPhase !== undefined).map(getPhase => getPhase.toLowerCase())
+
+            //     const queryMatches = data.NCTId[0].toLowerCase().includes(query) ||
+            //         data.BriefTitle[0].toLowerCase().includes(query) ||
+            //         ContactEmails.includes(query) ||
+            //         data.Condition[0].toLowerCase().includes(query) ||
+            //         data.OverallStatus[0].toLowerCase().includes(query) ||
+            //         filterPhase.includes(query);
+
+            //     return phaseMatches && queryMatches;
+            // });
+
             const query = this.searchQuery.toLowerCase();
 
             const filteredData = this.fetchedData.filter(data => {
-
+                console.log(data.Phase)
                 const phaseMatches = this.selectedPhase === '' || data.Phase[0] === this.selectedPhase;
 
                 const ContactEmails = data.LocationContactEMail.filter(email => email !== undefined).map(email => email.toLowerCase())
-                const filterPhase = data.Phase.filter(getPhase => getPhase !== undefined).map(getPhase => getPhase.toLowerCase())
-
+                // const filterPhase = data.Phase.filter(getPhase => getPhase !== undefined).map(getPhase => getPhase.toLowerCase())
+               // if (!query) return phaseMatches
+                
                 const queryMatches = data.NCTId[0].toLowerCase().includes(query) ||
                     data.BriefTitle[0].toLowerCase().includes(query) ||
                     ContactEmails.includes(query) ||
                     data.Condition[0].toLowerCase().includes(query) ||
                     data.OverallStatus[0].toLowerCase().includes(query) ||
-                    filterPhase.includes(query);
+                    data.Phase[0]?.toLowerCase().includes(query);
 
                 return phaseMatches && queryMatches;
             });
-
+           
             return filteredData;
         },
 
