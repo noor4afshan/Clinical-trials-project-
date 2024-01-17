@@ -137,6 +137,7 @@ export default {
 
             const filteredData = this.fetchedData.filter(data => {
                 console.log(data.Phase)
+                this.currentPage = 1
                 const phaseMatches = this.selectedPhase === '' || data.Phase[0] === this.selectedPhase;
 
                 const ContactEmails = data.LocationContactEMail.filter(email => email !== undefined).map(email => email.toLowerCase())
@@ -158,6 +159,7 @@ export default {
 
         selectPhase(phase) {                                     //For phase 
             this.selectedPhase = phase;
+            this.currentPage = 1
         }
 
     },
